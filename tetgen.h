@@ -54,21 +54,6 @@
 
 // #define TETLIBRARY
 
-
-// TetGen default uses the double-precision (64 bit) for a real number.
-//   Alternatively, one can use the single-precision (32 bit) 'float' if the
-//   memory is limited.
-
-#define REAL double  // #define REAL float
-
-// The maximum number of characters in a file name (including the null).
-
-#define FILENAMESIZE 1024
-
-// The maximum number of chars in a line read from a file (including the null).
-
-#define INPUTLINESIZE 2048
-
 // C standard libraries to perform Input/output operations, general utililities,
 //   manipulate strings and arrays, compute common mathematical operations,
 //   get date and time information.
@@ -105,6 +90,14 @@
 //   to free them and all pointers must be NULL.                              //
 //                                                                            //
 //============================================================================//
+
+namespace tetgen {
+
+// TetGen default uses the double-precision (64 bit) for a real number.
+//   Alternatively, one can use the single-precision (32 bit) 'float' if the
+//   memory is limited.
+
+using REAL = double;
 
 class tetgenio {
 
@@ -3607,7 +3600,7 @@ inline REAL tetgenmesh::norm2(REAL x, REAL y, REAL z)
   return (x) * (x) + (y) * (y) + (z) * (z);
 }
 
-
+}
 
 #endif // #ifndef tetgenH
 

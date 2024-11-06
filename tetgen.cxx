@@ -47,6 +47,16 @@
 
 #include "tetgen.h"
 
+// The maximum number of characters in a file name (including the null).
+
+#define FILENAMESIZE 1024
+
+// The maximum number of chars in a line read from a file (including the null).
+
+#define INPUTLINESIZE 2048
+
+namespace tetgen {
+
 //== io_cxx ==================================================================//
 //                                                                            //
 //                                                                            //
@@ -36494,7 +36504,7 @@ void tetrahedralize(tetgenbehavior *b, tetgenio *in, tetgenio *out,
 }
 
 #ifndef TETLIBRARY
-
+} // namespace tetgen
 //============================================================================//
 //                                                                            //
 // main()    The command line interface of TetGen.                            //
@@ -36518,6 +36528,8 @@ void tetrahedralize(char *switches, tetgenio *in, tetgenio *out,
 #endif // not TETLIBRARY
 
 {
+  using namespace tetgen;
+
   tetgenbehavior b;
 
 #ifndef TETLIBRARY
@@ -36564,4 +36576,8 @@ void tetrahedralize(char *switches, tetgenio *in, tetgenio *out,
 //                                                                            //
 //                                                                            //
 //== main_cxx ================================================================//
+
+#ifdef TETLIBRARY
+} // namespace tetgen
+#endif
 
