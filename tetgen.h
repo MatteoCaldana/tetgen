@@ -2480,7 +2480,7 @@ void tetrahedralize(char *switches, tetgenio *in, tetgenio *out,
 inline void terminatetetgen(tetgenmesh *m, int x)
 {
 #ifdef TETLIBRARY
-  (void*) m; // suppress unused variable warning
+  (void) m; // suppress unused variable warning
   throw x;
 #else
   switch (x) {
