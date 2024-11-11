@@ -100,6 +100,7 @@ namespace tetgen {
 using REAL = double;
 
 class tetgenio {
+  bool m_own_memory = true;
 
 public:
 
@@ -583,8 +584,8 @@ public:
   }
 
   // Constructor & destructor.
-  tetgenio() {initialize();}
-  ~tetgenio() {clean_memory();}
+  tetgenio(bool own_memory = true) : m_own_memory(own_memory) {initialize();}
+  ~tetgenio() { if(m_own_memory) clean_memory();}
 
 }; // class tetgenio
 
