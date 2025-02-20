@@ -834,7 +834,10 @@ bool tetgenio::load_elem(char* filebasename)
 
   int elenum = 0;
   float growth_ratio = 0.;
+  #pragma GCC diagnostic push
+  #pragma GCC diagnostic ignored "-Wunused-result"
   fgets(line, 1023, infile);
+  #pragma GCC diagnostic pop
   sscanf(line, "%d %f", &elenum, &growth_ratio);
 
   if (elenum == 0) {
@@ -847,7 +850,10 @@ bool tetgenio::load_elem(char* filebasename)
   
   int *idx, i;
   for (i = 0; i < elenum; i++) {
+    #pragma GCC diagnostic push
+    #pragma GCC diagnostic ignored "-Wunused-result"
     fgets(line, 1023, infile);
+    #pragma GCC diagnostic pop
     idx = &(refine_elem_list[i*4]);
     sscanf(line, "%d %d %d %d", &(idx[0]), &(idx[1]), &(idx[2]), &(idx[3]));
   }
@@ -2250,6 +2256,8 @@ bool tetgenio::load_vtk(char* filebasename)
       if(!strcmp(mode, "BINARY")) {
         for(i = 0; i < nverts; i++) {
           coord = &pointlist[i * 3];
+          #pragma GCC diagnostic push
+          #pragma GCC diagnostic ignored "-Wunused-result"
           if(!strcmp(fmt, "double")) {
             fread((char*)(&(coord[0])), sizeof(double), 1, fp);
             fread((char*)(&(coord[1])), sizeof(double), 1, fp);
@@ -2275,6 +2283,7 @@ bool tetgenio::load_vtk(char* filebasename)
             printf("Error: Only float or double formats are supported!\n");
             return false;
           }
+          #pragma GCC diagnostic pop
         }
       } else if(!strcmp(mode, "ASCII")) {
         for(i = 0; i < nverts; i++){
@@ -2310,6 +2319,8 @@ bool tetgenio::load_vtk(char* filebasename)
       }
 
       if(!strcmp(mode, "BINARY")) {
+        #pragma GCC diagnostic push
+        #pragma GCC diagnostic ignored "-Wunused-result"
         for(i = 0; i < nfaces; i++){
           fread((char*)(&nn), sizeof(int), 1, fp);
           if(ImALittleEndian){
@@ -2356,6 +2367,7 @@ bool tetgenio::load_vtk(char* filebasename)
             return false;
           }
         }
+        #pragma GCC diagnostic pop
       } else if(!strcmp(mode, "ASCII")) {
         for(i = 0; i < nfaces; i++) {
           bufferp = readline(line, fp, &line_count);
