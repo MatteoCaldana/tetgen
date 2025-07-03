@@ -955,6 +955,7 @@ static int fast_expansion_sum(int elen, REAL *e, int flen, REAL *f, REAL *h)
 /*  properties.                                                              */
 /*                                                                           */
 /*****************************************************************************/
+__attribute__((no_sanitize("address")))
 static
 int fast_expansion_sum_zeroelim(int elen, REAL *e, int flen, REAL *f, REAL *h)
 /* h cannot be e or f. */
